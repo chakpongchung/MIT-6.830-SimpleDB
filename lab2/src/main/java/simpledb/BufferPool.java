@@ -1,7 +1,6 @@
 package simpledb;
 
-import java.io.*;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.concurrent.ConcurrentHashMap;
@@ -85,7 +84,7 @@ public class BufferPool {
         /*
         * @return page or null if not exist
         * */
-        public Page evictPage() throws DbException {
+        public Page evictPage() {
             // LRU policy
             int bufferSize = pageBuffer.size();
             if (bufferSize > 0 && bufferSize == capacity) {
@@ -135,7 +134,7 @@ public class BufferPool {
      * @param perm the requested permissions on the page
      */
     public  Page getPage(TransactionId tid, PageId pid, Permissions perm)
-        throws TransactionAbortedException, DbException {
+        throws DbException {
         // some code goes here
         if (bufferPool.containsKey(pid)) {
             return bufferPool.get(pid);
@@ -294,7 +293,7 @@ public class BufferPool {
 
     /** Write all pages of the specified transaction to disk.
      */
-    public synchronized  void flushPages(TransactionId tid) throws IOException {
+    public synchronized  void flushPages(TransactionId tid) {
         // some code goes here
         // not necessary for lab1|lab2
     }

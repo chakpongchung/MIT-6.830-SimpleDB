@@ -48,7 +48,7 @@ public class EvictionTest extends SimpleDbTestBase {
         Tuple value = new Tuple(twoIntColumns);
         value.setField(0, new IntField(-42));
         value.setField(1, new IntField(-43));
-        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(new Tuple[]{value}));
+        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(value));
 
         // Insert the row
         Insert insert = new Insert(t.getId(), insertRow, f.getId());

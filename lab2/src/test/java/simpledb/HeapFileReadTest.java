@@ -1,15 +1,15 @@
 package simpledb;
 
-import simpledb.systemtest.SimpleDbTestBase;
-import simpledb.systemtest.SystemTestUtil;
-
-import java.util.*;
+import junit.framework.JUnit4TestAdapter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import simpledb.systemtest.SimpleDbTestBase;
+import simpledb.systemtest.SystemTestUtil;
+
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.*;
-import junit.framework.JUnit4TestAdapter;
 
 public class HeapFileReadTest extends SimpleDbTestBase {
     private HeapFile hf;
@@ -50,14 +50,14 @@ public class HeapFileReadTest extends SimpleDbTestBase {
      * Unit test for HeapFile.getTupleDesc()
      */
     @Test
-    public void getTupleDesc() throws Exception {    	
+    public void getTupleDesc() {
         assertEquals(td, hf.getTupleDesc());        
     }
     /**
      * Unit test for HeapFile.numPages()
      */
     @Test
-    public void numPages() throws Exception {
+    public void numPages() {
         assertEquals(1, hf.numPages());
         // assertEquals(1, empty.numPages());
     }
@@ -66,7 +66,7 @@ public class HeapFileReadTest extends SimpleDbTestBase {
      * Unit test for HeapFile.readPage()
      */
     @Test
-    public void readPage() throws Exception {
+    public void readPage() {
         HeapPageId pid = new HeapPageId(hf.getId(), 0);
         HeapPage page = (HeapPage) hf.readPage(pid);
 

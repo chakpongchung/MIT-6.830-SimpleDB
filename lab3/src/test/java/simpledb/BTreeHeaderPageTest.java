@@ -21,7 +21,7 @@ public class BTreeHeaderPageTest extends SimpleDbTestBase {
 	 * Set up initial resources for each unit test.
 	 */
 	@Before
-    public void addTable() throws Exception {
+    public void addTable() {
 		this.pid = new BTreePageId(-1, -1, BTreePageId.HEADER);
 		Database.getCatalog().addTable(new SkeletonFile(-1, Utility.getTupleDesc(2)), SystemTestUtil.getUUID());
 	}
@@ -95,7 +95,7 @@ public class BTreeHeaderPageTest extends SimpleDbTestBase {
 	 * Unit test for BTreeHeaderPage.numSlots()
 	 */
 	@Test
-    public void numSlots() throws Exception {
+    public void numSlots() {
 		assertEquals(32704, BTreeHeaderPage.getNumSlots());
 	}
 

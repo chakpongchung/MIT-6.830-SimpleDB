@@ -489,7 +489,7 @@ public class LogFile {
         committed transactions are installed and that the
         updates of uncommitted transactions are not installed.
     */
-    public void recover() throws IOException {
+    public void recover() {
         synchronized (Database.getBufferPool()) {
             synchronized (this) {
                 recoveryUndecided = false;
@@ -499,7 +499,7 @@ public class LogFile {
     }
 
     /** Print out a human readable represenation of the log */
-    public void print() throws IOException {
+    public void print() {
         // some code goes here
     }
 

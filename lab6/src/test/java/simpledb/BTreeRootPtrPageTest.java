@@ -35,7 +35,7 @@ public class BTreeRootPtrPageTest extends SimpleDbTestBase {
 	 * Set up initial resources for each unit test.
 	 */
 	@Before
-    public void addTable() throws Exception {
+    public void addTable() {
 		this.pid = new BTreePageId(-1, 0, BTreePageId.ROOT_PTR);
 		Database.getCatalog().addTable(new SkeletonFile(-1, Utility.getTupleDesc(2)), SystemTestUtil.getUUID());
 	}

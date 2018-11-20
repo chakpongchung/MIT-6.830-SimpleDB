@@ -1,5 +1,6 @@
 package simpledb;
-import java.util.*;
+
+import java.util.NoSuchElementException;
 
 /**
  * DbFileIterator is the iterator interface that all SimpleDB Dbfile should
@@ -10,11 +11,11 @@ public interface DbFileIterator{
      * Opens the iterator
      * @throws DbException when there are problems opening/accessing the database.
      */
-    public void open()
+    void open()
         throws DbException, TransactionAbortedException;
 
     /** @return true if there are more tuples available. */
-    public boolean hasNext()
+    boolean hasNext()
         throws DbException, TransactionAbortedException;
 
     /**
@@ -24,17 +25,17 @@ public interface DbFileIterator{
      * @return The next tuple in the iterator.
      * @throws NoSuchElementException if there are no more tuples
      */
-    public Tuple next()
+    Tuple next()
         throws DbException, TransactionAbortedException, NoSuchElementException;
 
     /**
      * Resets the iterator to the start.
      * @throws DbException When rewind is unsupported.
      */
-    public void rewind() throws DbException, TransactionAbortedException;
+    void rewind() throws DbException, TransactionAbortedException;
 
     /**
      * Closes the iterator.
      */
-    public void close();
+    void close();
 }

@@ -21,7 +21,7 @@ public class CatalogTest extends SimpleDbTestBase {
 	private String nameThisTestRun;
     
     @Before
-    public void addTables() throws Exception {
+    public void addTables() {
         Database.getCatalog().clear();
 		nameThisTestRun = SystemTestUtil.getUUID();
         Database.getCatalog().addTable(new SkeletonFile(id1, Utility.getTupleDesc(2)), nameThisTestRun);
@@ -32,7 +32,7 @@ public class CatalogTest extends SimpleDbTestBase {
      * Unit test for Catalog.getTupleDesc()
      */
     @Test
-    public void getTupleDesc() throws Exception {
+    public void getTupleDesc() {
         TupleDesc expected = Utility.getTupleDesc(2);
         TupleDesc actual = Database.getCatalog().getTupleDesc(id1);
 
@@ -67,7 +67,7 @@ public class CatalogTest extends SimpleDbTestBase {
      */
 
     @Test
-    public void getDatabaseFile() throws Exception {
+    public void getDatabaseFile() {
         DbFile f = Database.getCatalog().getDatabaseFile(id1);
 
         // NOTE(ghuo): we try not to dig too deeply into the DbFile API here; we
@@ -79,7 +79,7 @@ public class CatalogTest extends SimpleDbTestBase {
      * Check that duplicate names are handled correctly
      */
     @Test
-    public void handleDuplicateNames() throws Exception {
+    public void handleDuplicateNames() {
     	int id3 = r.nextInt();
     	Database.getCatalog().addTable(new SkeletonFile(id3, Utility.getTupleDesc(2)), name);
     	assertEquals(id3, Database.getCatalog().getTableId(name));
@@ -89,7 +89,7 @@ public class CatalogTest extends SimpleDbTestBase {
      * Check that duplicate file ids are handled correctly
      */
     @Test
-    public void handleDuplicateIds() throws Exception {
+    public void handleDuplicateIds() {
     	String newName = SystemTestUtil.getUUID();
     	DbFile f = new SkeletonFile(id2, Utility.getTupleDesc(2));
     	Database.getCatalog().addTable(f, newName);

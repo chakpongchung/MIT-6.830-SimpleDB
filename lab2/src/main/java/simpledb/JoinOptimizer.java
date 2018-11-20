@@ -1,9 +1,9 @@
 package simpledb;
 
-import java.util.*;
-
 import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import java.util.*;
 
 /**
  * The JoinOptimizer class is responsible for ordering a series of joins
@@ -209,14 +209,10 @@ public class JoinOptimizer {
      *            simply execute it
      * @return A Vector<LogicalJoinNode> that stores joins in the left-deep
      *         order in which they should be executed.
-     * @throws ParsingException
-     *             when stats or filter selectivities is missing a table in the
-     *             join, or or when another internal error occurs
      */
     public Vector<LogicalJoinNode> orderJoins(
             HashMap<String, TableStats> stats,
-            HashMap<String, Double> filterSelectivities, boolean explain)
-            throws ParsingException {
+            HashMap<String, Double> filterSelectivities, boolean explain) {
         //Not necessary for labs 1--3
 
         // some code goes here
@@ -299,7 +295,7 @@ public class JoinOptimizer {
             t2card = table2Alias == null ? 0 : stats.get(table2Name)
                     .estimateTableCardinality(
                             filterSelectivities.get(j.t2Alias));
-            rightPkey = table2Alias == null ? false : isPkey(table2Alias,
+            rightPkey = table2Alias != null && isPkey(table2Alias,
                     j.f2PureName);
         } else {
             // news is not empty -- figure best way to join j to news
@@ -327,7 +323,7 @@ public class JoinOptimizer {
                 t2card = j.t2Alias == null ? 0 : stats.get(table2Name)
                         .estimateTableCardinality(
                                 filterSelectivities.get(j.t2Alias));
-                rightPkey = j.t2Alias == null ? false : isPkey(j.t2Alias,
+                rightPkey = j.t2Alias != null && isPkey(j.t2Alias,
                         j.f2PureName);
             } else if (doesJoin(prevBest, j.t2Alias)) { // j.t2 is in prevbest
                                                         // (both

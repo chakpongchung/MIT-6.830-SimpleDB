@@ -274,7 +274,7 @@ public class Parser {
     private boolean inUserTrans = false;
 
     public Query handleQueryStatement(ZQuery s, TransactionId tId)
-            throws TransactionAbortedException, DbException, IOException,
+            throws IOException,
             simpledb.ParsingException, Zql.ParseException {
         Query query = new Query(tId);
 
@@ -296,7 +296,7 @@ public class Parser {
                         "updateOperatorCardinality", p, h, h);
 
                 System.out.println("The query plan is:");
-                m.invoke(null, (Operator) physicalPlan,
+                m.invoke(null, physicalPlan,
                         lp.getTableAliasToIdMapping(), TableStats.getStatsMap());
                 c = Class.forName("simpledb.QueryPlanVisualizer");
                 m = c.getMethod(
@@ -321,7 +321,7 @@ public class Parser {
     }
 
     public Query handleInsertStatement(ZInsert s, TransactionId tId)
-            throws TransactionAbortedException, DbException, IOException,
+            throws DbException, IOException,
             simpledb.ParsingException, Zql.ParseException {
         int tableId;
         try {
@@ -385,7 +385,7 @@ public class Parser {
             newTups = new TupleArrayIterator(tups);
 
         } else {
-            ZQuery zq = (ZQuery) s.getQuery();
+            ZQuery zq = s.getQuery();
             LogicalPlan lp = parseQueryLogicalPlan(tId, zq);
             newTups = lp.physicalPlan(tId, TableStats.getStatsMap(), explain);
         }
@@ -395,8 +395,8 @@ public class Parser {
     }
 
     public Query handleDeleteStatement(ZDelete s, TransactionId tid)
-            throws TransactionAbortedException, DbException, IOException,
-            simpledb.ParsingException, Zql.ParseException {
+            throws
+            simpledb.ParsingException {
         int id;
         try {
             id = Database.getCatalog().getTableId(s.getTable()); // will fall
@@ -664,7 +664,7 @@ public class Parser {
                 // statement spread across many lines
                 while (line.indexOf(';') >= 0) {
                     int split = line.indexOf(';');
-                    buffer.append(line.substring(0, split + 1));
+                    buffer.append(line, 0, split + 1);
                     String cmd = buffer.toString().trim();
                     cmd = cmd.substring(0, cmd.length() - 1).trim() + ";";
                     byte[] statementBytes = cmd.getBytes("UTF-8");
@@ -707,12 +707,12 @@ class TupleArrayIterator implements DbIterator {
         this.tups = tups;
     }
 
-    public void open() throws DbException, TransactionAbortedException {
+    public void open() {
         it = tups.iterator();
     }
 
     /** @return true if the iterator has more items. */
-    public boolean hasNext() throws DbException, TransactionAbortedException {
+    public boolean hasNext() {
         return it.hasNext();
     }
 
@@ -723,18 +723,16 @@ class TupleArrayIterator implements DbIterator {
      * @return The next tuple in the iterator, or null if there are no more
      *         tuples.
      */
-    public Tuple next() throws DbException, TransactionAbortedException,
+    public Tuple next() throws
             NoSuchElementException {
         return it.next();
     }
 
     /**
      * Resets the iterator to the start.
-     * 
-     * @throws DbException
-     *             When rewind is unsupported.
+     *
      */
-    public void rewind() throws DbException, TransactionAbortedException {
+    public void rewind() {
         it = tups.iterator();
     }
 

@@ -72,7 +72,7 @@ public class BTreeTest extends SimpleDbTestBase {
 	}
 	
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		// set the page size back to the default
 		BufferPool.resetPageSize();
 		Database.reset();

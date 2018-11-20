@@ -50,7 +50,7 @@ public class Query implements Serializable {
         tid = t;
     }
 
-    public void start() throws IOException, DbException,
+    public void start() throws DbException,
             TransactionAbortedException {
         op.open();
 
@@ -87,7 +87,7 @@ public class Query implements Serializable {
     }
 
     /** Close the iterator */
-    public void close() throws IOException {
+    public void close() {
         op.close();
         started = false;
     }
@@ -103,7 +103,7 @@ public class Query implements Serializable {
         for (int i = 0; i < names.length() + td.numFields() * 4; i++) {
             System.out.print("-");
         }
-        System.out.println("");
+        System.out.println();
 
         this.start();
         int cnt = 0;

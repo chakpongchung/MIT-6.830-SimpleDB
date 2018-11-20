@@ -1,10 +1,11 @@
 package simpledb.systemtest;
 
-import static org.junit.Assert.*;
+import simpledb.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import simpledb.*;
+
+import static org.junit.Assert.*;
 
 public class DeleteTest extends FilterBase {
     ArrayList<ArrayList<Integer>> expectedTuples = null;

@@ -1,14 +1,14 @@
 package simpledb.systemtest;
 
-import static org.junit.Assert.*;
+import junit.framework.Assert;
+import org.junit.Test;
+import simpledb.*;
 
 import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.Test;
-
-import junit.framework.Assert;
-import simpledb.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Creates a heap file with 1024*500 tuples with two integer fields each.  Clears the buffer pool,
@@ -47,7 +47,7 @@ public class EvictionTest extends SimpleDbTestBase {
         Tuple value = new Tuple(twoIntColumns);
         value.setField(0, new IntField(-42));
         value.setField(1, new IntField(-43));
-        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(new Tuple[]{value}));
+        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(value));
 
         // Insert the row
         Insert insert = new Insert(t.getId(), insertRow, f.getId());

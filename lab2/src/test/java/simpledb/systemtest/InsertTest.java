@@ -1,11 +1,12 @@
 package simpledb.systemtest;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import org.junit.Test;
 import simpledb.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
-import org.junit.Test;
 
 public class InsertTest extends SimpleDbTestBase {
     private void validateInsert(int columns, int sourceRows, int destinationRows)

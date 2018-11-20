@@ -1,13 +1,13 @@
 package simpledb;
 
-import java.util.*;
-
+import junit.framework.JUnit4TestAdapter;
 import org.junit.Before;
 import org.junit.Test;
-
 import simpledb.systemtest.SimpleDbTestBase;
+
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.assertEquals;
-import junit.framework.JUnit4TestAdapter;
 
 public class StringAggregatorTest extends SimpleDbTestBase {
 
@@ -18,7 +18,7 @@ public class StringAggregatorTest extends SimpleDbTestBase {
   /**
    * Initialize each unit test
    */
-  @Before public void createTupleList() throws Exception {
+  @Before public void createTupleList() {
     this.scan1 = TestUtil.createTupleList(width1,
         new Object[] { 1, "a",
                     1, "b",

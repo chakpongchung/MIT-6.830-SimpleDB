@@ -19,7 +19,7 @@ public class StringAggregatorTest extends SimpleDbTestBase {
    * Initialize each unit test
    */
   @Before
-  public void createTupleList() throws Exception {
+  public void createTupleList() {
     this.scan1 = TestUtil.createTupleList(width1,
         new Object[] { 1, "a",
                     1, "b",

@@ -1,7 +1,5 @@
 package simpledb;
 
-import java.io.IOException;
-
 /**
  * The delete operator. Delete reads tuples from its child operator and removes
  * them from the table they belong to.
@@ -46,7 +44,7 @@ public class Delete extends Operator {
         child.close();
     }
 
-    public void rewind() throws DbException, TransactionAbortedException {
+    public void rewind() {
         // some code goes here
         // nothing
     }

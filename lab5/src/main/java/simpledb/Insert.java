@@ -23,12 +23,8 @@ public class Insert extends Operator {
      *            The child operator from which to read tuples to be inserted.
      * @param tableid
      *            The table in which to insert tuples.
-     * @throws DbException
-     *             if TupleDesc of child differs from table into which we are to
-     *             insert.
      */
-    public Insert(TransactionId t,DbIterator child, int tableid)
-            throws DbException {
+    public Insert(TransactionId t,DbIterator child, int tableid) {
         // some code goes here
         this.tid = t;
         this.child = child;
@@ -52,7 +48,7 @@ public class Insert extends Operator {
         child.close();
     }
 
-    public void rewind() throws DbException, TransactionAbortedException {
+    public void rewind() {
         // some code goes here
         // child.rewind();
     }

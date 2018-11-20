@@ -1,11 +1,7 @@
 package simpledb;
-import java.util.Map;
-import java.util.Vector;
-import java.util.HashMap;
-import java.util.Iterator;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * LogicalPlan represents a logical query plan that has been through
@@ -382,7 +378,7 @@ public class LogicalPlan {
                 throw new ParsingException("Unknown table in WHERE clause " + lj.t2Alias);
             
             DbIterator j;
-            j = jo.instantiateJoin(lj,plan1,plan2);
+            j = JoinOptimizer.instantiateJoin(lj,plan1,plan2);
             subplanMap.put(t1name, j);
 
             if (!isSubqueryJoin) {
@@ -406,7 +402,7 @@ public class LogicalPlan {
             throw new ParsingException("Query does not include join expressions joining all nodes!");
         }
         
-        DbIterator node =  (DbIterator)(subplanMap.entrySet().iterator().next().getValue());
+        DbIterator node = (subplanMap.entrySet().iterator().next().getValue());
 
         //walk the select list, to determine order in which to project output fields
         ArrayList<Integer> outFields = new ArrayList<Integer>();

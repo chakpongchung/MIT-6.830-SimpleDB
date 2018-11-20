@@ -72,7 +72,7 @@ public class BufferPool {
      * @param perm the requested permissions on the page
      */
     public Page getPage(TransactionId tid, PageId pid, Permissions perm)
-        throws TransactionAbortedException, DbException {
+        throws DbException {
         // some code goes here
         Page pg;
         if (pgBufferPool.containsKey(pid)) {
@@ -239,7 +239,7 @@ public class BufferPool {
 
     /** Write all pages of the specified transaction to disk.
      */
-    public synchronized  void flushPages(TransactionId tid) throws IOException {
+    public synchronized  void flushPages(TransactionId tid) {
         // some code goes here
         // not necessary for lab1|lab2
     }
@@ -248,7 +248,7 @@ public class BufferPool {
      * Discards a page from the buffer pool.
      * Flushes the page to disk to ensure dirty pages are updated on disk.
      */
-    private synchronized  void evictPage() throws DbException {
+    private synchronized  void evictPage() {
         // some code goes here
         // not necessary for lab1
         // randomly discard a page

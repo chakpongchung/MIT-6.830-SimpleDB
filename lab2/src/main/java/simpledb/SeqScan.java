@@ -1,7 +1,6 @@
 package simpledb;
 
-import javax.xml.crypto.Data;
-import java.util.*;
+import java.util.NoSuchElementException;
 
 /**
  * SeqScan is an implementation of a sequential scan access method that reads

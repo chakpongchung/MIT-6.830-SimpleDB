@@ -51,7 +51,7 @@ public abstract class BTreePage implements Page {
 	 // * @param data - the raw data of this page
 	 * @param key - the field which the index is keyed on
 	 */
-	public BTreePage(BTreePageId id, int key) throws IOException {
+	public BTreePage(BTreePageId id, int key) {
 		this.pid = id;
 		this.keyField = key;
 		this.td = Database.getCatalog().getTupleDesc(id.getTableId());

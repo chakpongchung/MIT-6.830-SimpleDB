@@ -1,11 +1,11 @@
 package simpledb;
 
+import junit.framework.JUnit4TestAdapter;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import junit.framework.JUnit4TestAdapter;
 
 /**
  * We reserve more heavy-duty insertion testing for HeapFile and HeapPage.

@@ -1,6 +1,6 @@
 package simpledb;
 
-import java.util.*;
+import java.util.NoSuchElementException;
 
 /**
  * The Join operator implements the relational join operation.

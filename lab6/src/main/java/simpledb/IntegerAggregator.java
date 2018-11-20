@@ -38,15 +38,15 @@ public class IntegerAggregator implements Aggregator {
         this.what = what;
         // this.aggregates = new TreeMap<>();
         if (this.gbfield == Aggregator.NO_GROUPING) {
-            aggr = (Object) new ArrayList<Integer>();
+            aggr = new ArrayList<Integer>();
         } else {
             // grouping
             assert gbfieldtype != null;
             if (gbfieldtype == Type.INT_TYPE) {
-                aggr = (Object) new TreeMap<Integer, ArrayList<Integer>>();
+                aggr = new TreeMap<Integer, ArrayList<Integer>>();
             } else {
                 // must be STRING_TYPE
-                aggr = (Object) new TreeMap<String, ArrayList<Integer>>();
+                aggr = new TreeMap<String, ArrayList<Integer>>();
             }
         }
     }
@@ -184,10 +184,9 @@ public class IntegerAggregator implements Aggregator {
         /**
          * Opens the iterator. This must be called before any of the other methods.
          *
-         * @throws DbException when there are problems opening/accessing the database.
          */
         @Override
-        public void open() throws DbException, TransactionAbortedException {
+        public void open() {
             it = res.iterator();
         }
 
@@ -198,7 +197,7 @@ public class IntegerAggregator implements Aggregator {
          * @throws IllegalStateException If the iterator has not been opened
          */
         @Override
-        public boolean hasNext() throws DbException, TransactionAbortedException {
+        public boolean hasNext() {
             if (it == null) {
                 throw new IllegalStateException("IntegerAggregator not open");
 
@@ -216,7 +215,7 @@ public class IntegerAggregator implements Aggregator {
          * @throws IllegalStateException  If the iterator has not been opened
          */
         @Override
-        public Tuple next() throws DbException, TransactionAbortedException, NoSuchElementException {
+        public Tuple next() throws NoSuchElementException {
             if (it == null) {
                 throw new IllegalStateException("IntegerAggregator not open");
             }
@@ -226,11 +225,10 @@ public class IntegerAggregator implements Aggregator {
         /**
          * Resets the iterator to the start.
          *
-         * @throws DbException           when rewind is unsupported.
          * @throws IllegalStateException If the iterator has not been opened
          */
         @Override
-        public void rewind() throws DbException, TransactionAbortedException {
+        public void rewind() {
             if (it == null) {
                 throw new IllegalStateException("IntegerAggregator not open");
             }

@@ -1,24 +1,22 @@
 package simpledb;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.NoSuchElementException;
-
 import junit.framework.Assert;
 import junit.framework.JUnit4TestAdapter;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import simpledb.TestUtil.SkeletonFile;
 import simpledb.systemtest.SimpleDbTestBase;
 import simpledb.systemtest.SystemTestUtil;
+
+import java.util.NoSuchElementException;
+
+import static junit.framework.Assert.assertEquals;
 
 public class CatalogTest extends SimpleDbTestBase {
     private static String name = "test";
 	private String nameThisTestRun;
     
-    @Before public void addTables() throws Exception {
+    @Before public void addTables() {
         Database.getCatalog().clear();
 		nameThisTestRun = SystemTestUtil.getUUID();
         Database.getCatalog().addTable(new SkeletonFile(-1, Utility.getTupleDesc(2)), nameThisTestRun);
@@ -28,7 +26,7 @@ public class CatalogTest extends SimpleDbTestBase {
     /**
      * Unit test for Catalog.getTupleDesc()
      */
-    @Test public void getTupleDesc() throws Exception {
+    @Test public void getTupleDesc() {
         TupleDesc expected = Utility.getTupleDesc(2);
         TupleDesc actual = Database.getCatalog().getTupleDesc(-1);
 
@@ -60,7 +58,7 @@ public class CatalogTest extends SimpleDbTestBase {
     /**
      * Unit test for Catalog.getDatabaseFile()
      */
-    @Test public void getDatabaseFile() throws Exception {
+    @Test public void getDatabaseFile() {
         DbFile f = Database.getCatalog().getDatabaseFile(-1);
 
         // NOTE(ghuo): we try not to dig too deeply into the DbFile API here; we

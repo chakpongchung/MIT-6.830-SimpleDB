@@ -1,6 +1,7 @@
 package simpledb;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**

@@ -1,6 +1,5 @@
 package simpledb;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,7 +58,7 @@ public class BufferPool {
      * @param perm the requested permissions on the page
      */
     public  Page getPage(TransactionId tid, PageId pid, Permissions perm)
-        throws TransactionAbortedException, DbException {
+        throws DbException {
         // some code goes here
         if (bufferPool.containsKey(pid)) {
             return bufferPool.get(pid);
@@ -96,7 +95,7 @@ public class BufferPool {
      *
      * @param tid the ID of the transaction requesting the unlock
      */
-    public void transactionComplete(TransactionId tid) throws IOException {
+    public void transactionComplete(TransactionId tid) {
         // some code goes here
         // not necessary for lab1|lab2
     }
@@ -135,8 +134,7 @@ public class BufferPool {
      * @param tableId the table to add the tuple to
      * @param t the tuple to add
      */
-    public void insertTuple(TransactionId tid, int tableId, Tuple t)
-        throws DbException, IOException, TransactionAbortedException {
+    public void insertTuple(TransactionId tid, int tableId, Tuple t) {
         // some code goes here
         // not necessary for lab1
     }
@@ -154,8 +152,7 @@ public class BufferPool {
      * @param tid the transaction deleting the tuple.
      * @param t the tuple to delete
      */
-    public  void deleteTuple(TransactionId tid, Tuple t)
-        throws DbException, TransactionAbortedException {
+    public  void deleteTuple(TransactionId tid, Tuple t) {
         // some code goes here
         // not necessary for lab1
     }
@@ -165,7 +162,7 @@ public class BufferPool {
      * NB: Be careful using this routine -- it writes dirty data to disk so will
      *     break simpledb if running in NO STEAL mode.
      */
-    public synchronized void flushAllPages() throws IOException {
+    public synchronized void flushAllPages() {
         // some code goes here
         // not necessary for lab1
 
@@ -185,14 +182,14 @@ public class BufferPool {
      * Flushes a certain page to disk
      * @param pid an ID indicating the page to flush
      */
-    private synchronized  void flushPage(PageId pid) throws IOException {
+    private synchronized  void flushPage(PageId pid) {
         // some code goes here
         // not necessary for lab1
     }
 
     /** Write all pages of the specified transaction to disk.
      */
-    public synchronized  void flushPages(TransactionId tid) throws IOException {
+    public synchronized  void flushPages(TransactionId tid) {
         // some code goes here
         // not necessary for lab1|lab2
     }
@@ -201,7 +198,7 @@ public class BufferPool {
      * Discards a page from the buffer pool.
      * Flushes the page to disk to ensure dirty pages are updated on disk.
      */
-    private synchronized  void evictPage() throws DbException {
+    private synchronized  void evictPage() {
         // some code goes here
         // not necessary for lab1
     }

@@ -1,16 +1,11 @@
 package simpledb.systemtest;
 
+import org.junit.Assert;
+import simpledb.*;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-
-import org.junit.Assert;
-
-import simpledb.*;
+import java.util.*;
 
 public class SystemTestUtil {
     public static final TupleDesc SINGLE_INT_DESCRIPTOR =
@@ -30,7 +25,7 @@ public class SystemTestUtil {
     public static HeapFile createRandomHeapFile(
             int columns, int rows, int maxValue, Map<Integer, Integer> columnSpecification,
             ArrayList<ArrayList<Integer>> tuples)
-            throws IOException, DbException, TransactionAbortedException {
+            throws IOException {
         File temp = createRandomHeapFileUnopened(columns, rows, maxValue,
                 columnSpecification, tuples);
         return Utility.openHeapFile(columns, temp);
@@ -46,7 +41,7 @@ public class SystemTestUtil {
     public static HeapFile createRandomHeapFile(
             int columns, int rows, int maxValue, Map<Integer, Integer> columnSpecification,
             ArrayList<ArrayList<Integer>> tuples, String colPrefix)
-            throws IOException, DbException, TransactionAbortedException {
+            throws IOException {
         File temp = createRandomHeapFileUnopened(columns, rows, maxValue,
                 columnSpecification, tuples);
         return Utility.openHeapFile(columns, colPrefix, temp);
@@ -108,7 +103,7 @@ public class SystemTestUtil {
     }
 
     public static void matchTuples(DbIterator iterator, List<ArrayList<Integer>> tuples)
-            throws DbException, TransactionAbortedException, IOException {
+            throws DbException, TransactionAbortedException {
         ArrayList<ArrayList<Integer>> copy = new ArrayList<ArrayList<Integer>>(tuples);
 
         if (Debug.isEnabled()) {

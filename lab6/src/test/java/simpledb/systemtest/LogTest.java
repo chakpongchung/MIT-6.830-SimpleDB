@@ -25,7 +25,7 @@ public class LogTest extends SimpleDbTestBase {
         Tuple value = new Tuple(twoIntColumns);
         value.setField(0, new IntField(v1));
         value.setField(1, new IntField(v2));
-        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(new Tuple[]{value}));
+        TupleIterator insertRow = new TupleIterator(Utility.getTupleDesc(2), Arrays.asList(value));
 
         // Insert the row
         Insert insert = new Insert(t.getId(), insertRow, hf.getId());
@@ -72,7 +72,7 @@ public class LogTest extends SimpleDbTestBase {
     }
 
     void abort(Transaction t)
-        throws DbException, TransactionAbortedException, IOException {
+        throws IOException {
         // t.transactionComplete(true); // abort
         Database.getBufferPool().flushAllPages(); // XXX defeat NO-STEAL-based abort
         Database.getLogFile().logAbort(t.getId()); // does rollback too
@@ -103,7 +103,7 @@ public class LogTest extends SimpleDbTestBase {
     // restart Database
     // run log recovery
     void crash()
-        throws DbException, TransactionAbortedException, IOException {
+        throws IOException {
         Database.reset();
         hf1 = Utility.openHeapFile(2, file1);
         hf2 = Utility.openHeapFile(2, file2);
@@ -113,7 +113,7 @@ public class LogTest extends SimpleDbTestBase {
     // create an initial database with two empty tables
     // does *not* initiate log file recovery
     void setup()
-            throws IOException, DbException, TransactionAbortedException {
+            throws IOException {
         Database.reset();
 
         // empty heap files w/ 2 columns.

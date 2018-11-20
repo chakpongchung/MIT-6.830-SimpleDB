@@ -1,11 +1,10 @@
 package simpledb;
 
-import com.sun.xml.internal.bind.v2.TODO;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
-import org.hamcrest.internal.ArrayIterator;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * TupleDesc describes the schema of a tuple.

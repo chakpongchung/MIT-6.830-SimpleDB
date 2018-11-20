@@ -560,11 +560,10 @@ public class BTreeFile implements DbFile {
 	 * @param pid - id of the parent node
 	 * @param child - id of the child node to be updated with the parent pointer
 	 * @throws DbException
-	 * @throws IOException
 	 * @throws TransactionAbortedException
 	 */
 	private void updateParentPointer(TransactionId tid, HashMap<PageId, Page> dirtypages, BTreePageId pid, BTreePageId child) 
-			throws DbException, IOException, TransactionAbortedException {
+			throws DbException, TransactionAbortedException {
 
 		BTreePage p = (BTreePage) getPage(tid, dirtypages, child, Permissions.READ_ONLY);
 

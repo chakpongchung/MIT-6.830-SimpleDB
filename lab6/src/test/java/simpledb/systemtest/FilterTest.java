@@ -9,7 +9,7 @@ import static org.junit.Assert.assertNotNull;
 public class FilterTest extends FilterBase {
     @Override
     protected int applyPredicate(HeapFile table, TransactionId tid, Predicate predicate)
-            throws DbException, TransactionAbortedException, IOException {
+            throws DbException, TransactionAbortedException {
         SeqScan ss = new SeqScan(tid, table.getId(), "");
         Filter filter = new Filter(predicate, ss);
         filter.open();

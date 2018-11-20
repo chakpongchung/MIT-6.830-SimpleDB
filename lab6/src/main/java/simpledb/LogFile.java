@@ -692,7 +692,7 @@ public class LogFile {
     }
 
     /** Print out a human readable represenation of the log */
-    public void print() throws IOException {
+    public void print() {
         // some code goes here
     }
 

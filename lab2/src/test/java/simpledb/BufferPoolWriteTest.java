@@ -1,18 +1,18 @@
 package simpledb;
 
+import junit.framework.JUnit4TestAdapter;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import simpledb.systemtest.SystemTestUtil;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import simpledb.systemtest.SystemTestUtil;
-import static org.junit.Assert.*;
-import junit.framework.JUnit4TestAdapter;
+import static org.junit.Assert.assertEquals;
 
 public class BufferPoolWriteTest extends TestUtil.CreateHeapFile {
     private TransactionId tid;
@@ -31,7 +31,7 @@ public class BufferPoolWriteTest extends TestUtil.CreateHeapFile {
     	// each on a new page
     	@Override
     	public ArrayList<Page> insertTuple(TransactionId tid, Tuple t)
-    			throws DbException, IOException, TransactionAbortedException {
+    			throws DbException, IOException {
     		ArrayList<Page> dirtypages = new ArrayList<Page>();
     		for(int i = 0; i < duplicates; i++) {
     			// create a blank page

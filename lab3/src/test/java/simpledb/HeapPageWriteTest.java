@@ -22,7 +22,7 @@ public class HeapPageWriteTest extends SimpleDbTestBase {
      * Set up initial resources for each unit test.
      */
     @Before
-    public void addTable() throws IOException {
+    public void addTable() {
         this.pid = new HeapPageId(-1, -1);
         Database.getCatalog().addTable(new SkeletonFile(-1, Utility.getTupleDesc(2)), SystemTestUtil.getUUID());
     }

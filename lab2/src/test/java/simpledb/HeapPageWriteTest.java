@@ -1,20 +1,18 @@
 package simpledb;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import junit.framework.JUnit4TestAdapter;
+import org.junit.Before;
+import org.junit.Test;
+import simpledb.TestUtil.SkeletonFile;
+import simpledb.systemtest.SimpleDbTestBase;
+import simpledb.systemtest.SystemTestUtil;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import junit.framework.JUnit4TestAdapter;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import simpledb.TestUtil.SkeletonFile;
-import simpledb.systemtest.SimpleDbTestBase;
-import simpledb.systemtest.SystemTestUtil;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HeapPageWriteTest extends SimpleDbTestBase {
 
@@ -23,7 +21,7 @@ public class HeapPageWriteTest extends SimpleDbTestBase {
     /**
      * Set up initial resources for each unit test.
      */
-    @Before public void addTable() throws IOException {
+    @Before public void addTable() {
         this.pid = new HeapPageId(-1, -1);
         Database.getCatalog().addTable(new SkeletonFile(-1, Utility.getTupleDesc(2)), SystemTestUtil.getUUID());
     }

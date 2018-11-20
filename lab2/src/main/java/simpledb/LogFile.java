@@ -1,9 +1,16 @@
 
 package simpledb;
 
-import java.io.*;
-import java.util.*;
-import java.lang.reflect.*;
+import java.io.EOFException;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 /**
 LogFile implements the recovery subsystem of SimpleDb.  This class is
@@ -489,7 +496,7 @@ public class LogFile {
         committed transactions are installed and that the
         updates of uncommitted transactions are not installed.
     */
-    public void recover() throws IOException {
+    public void recover() {
         synchronized (Database.getBufferPool()) {
             synchronized (this) {
                 recoveryUndecided = false;
@@ -499,7 +506,7 @@ public class LogFile {
     }
 
     /** Print out a human readable represenation of the log */
-    public void print() throws IOException {
+    public void print() {
         // some code goes here
     }
 

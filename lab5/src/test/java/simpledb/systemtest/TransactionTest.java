@@ -173,7 +173,7 @@ public class TransactionTest extends SimpleDbTestBase {
             participationLatch = new CyclicBarrier(parties, new UpdateLatch(this, nextParticipants));
         }
         
-        public void await() throws InterruptedException, BrokenBarrierException {
+        public void await() throws InterruptedException {
             awaitLatch.countDown();
             awaitLatch.await();
         }

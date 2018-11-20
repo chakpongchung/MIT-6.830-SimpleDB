@@ -22,7 +22,7 @@ public class IntegerAggregatorTest extends SimpleDbTestBase {
    * Initialize each unit test
    */
   @Before
-  public void createTupleList() throws Exception {
+  public void createTupleList() {
     this.scan1 = TestUtil.createTupleList(width1,
         new int[] { 1, 2,
                     1, 4,

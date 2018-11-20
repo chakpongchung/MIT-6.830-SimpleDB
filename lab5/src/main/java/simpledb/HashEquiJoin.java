@@ -114,7 +114,7 @@ public class HashEquiJoin extends Operator {
      * @return The next matching tuple.
      * @see JoinPredicate#filter
      */
-    private Tuple processList() throws TransactionAbortedException, DbException {
+    private Tuple processList() {
         t1 = listIt.next();
 
         int td1n = t1.getTupleDesc().numFields();

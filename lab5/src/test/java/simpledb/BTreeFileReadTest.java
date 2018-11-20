@@ -50,14 +50,14 @@ public class BTreeFileReadTest extends SimpleDbTestBase {
 	 * Unit test for BTreeFile.getTupleDesc()
 	 */
 	@Test
-	public void getTupleDesc() throws Exception {    	
+	public void getTupleDesc() {
 		assertEquals(td, f.getTupleDesc());        
 	}
 	/**
 	 * Unit test for BTreeFile.numPages()
 	 */
 	@Test
-	public void numPages() throws Exception {
+	public void numPages() {
 		assertEquals(1, f.numPages());
 	}
 
@@ -65,7 +65,7 @@ public class BTreeFileReadTest extends SimpleDbTestBase {
 	 * Unit test for BTreeFile.readPage()
 	 */
 	@Test
-	public void readPage() throws Exception {
+	public void readPage() {
 		BTreePageId rootPtrPid = new BTreePageId(f.getId(), 0, BTreePageId.ROOT_PTR);
 		BTreeRootPtrPage rootPtr = (BTreeRootPtrPage) f.readPage(rootPtrPid);
 

@@ -1,6 +1,6 @@
 package simpledb;
 
-import java.util.*;
+import java.util.NoSuchElementException;
 
 /**
  * Filter is an operator that implements a relational select.

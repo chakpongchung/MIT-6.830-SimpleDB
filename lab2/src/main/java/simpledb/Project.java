@@ -1,6 +1,7 @@
 package simpledb;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * Project is an operator that implements a relational projection.

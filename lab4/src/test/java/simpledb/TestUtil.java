@@ -215,17 +215,15 @@ public class TestUtil {
             throw new RuntimeException("not implemented");
         }
 
-        public void writePage(Page p) throws IOException {
+        public void writePage(Page p) {
             throw new RuntimeException("not implemented");
         }
 
-        public ArrayList<Page> insertTuple(TransactionId tid, Tuple t)
-            throws DbException, IOException, TransactionAbortedException {
+        public ArrayList<Page> insertTuple(TransactionId tid, Tuple t) {
             throw new RuntimeException("not implemented");
         }
 
-        public ArrayList<Page> deleteTuple(TransactionId tid, Tuple t)
-            throws DbException, TransactionAbortedException {
+        public ArrayList<Page> deleteTuple(TransactionId tid, Tuple t) {
             throw new RuntimeException("not implemented");
         }
 
@@ -289,12 +287,11 @@ public class TestUtil {
             return tup;
         }
 
-		public boolean hasNext() throws DbException, TransactionAbortedException {
-			if (cur >= high) return false;
-			return true;
-		}
+		public boolean hasNext() {
+            return cur < high;
+        }
 
-		public Tuple next() throws DbException, TransactionAbortedException, NoSuchElementException {
+		public Tuple next() throws NoSuchElementException {
 			if(cur >= high) throw new NoSuchElementException();
             Tuple tup = new Tuple(getTupleDesc());
             for (int i = 0; i < width; ++i)
